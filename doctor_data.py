@@ -4,7 +4,7 @@ DOC_IDS = {
     "Olszewska Katarzyna":230858,
     "Wróbel Jerzy":103910,
     "Wylegała Zbigniew":223216,
-    "Bałuszyńska Dagmara":10472
+    "Bałuszyńska Dagmara":10472,
 }
 SPEC_IDS = {
     "Gastroenterolog dorośli": 42,

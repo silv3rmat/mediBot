@@ -1,5 +1,5 @@
 from twilio.rest import Client
-from creds import *
+from medi_creds import *
 
 
 def send_sms(text):

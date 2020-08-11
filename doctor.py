@@ -16,9 +16,14 @@ from datetime import datetime, timedelta
 from urllib3.exceptions import NewConnectionError, MaxRetryError
 import sys
 from sms import send_sms
+from utils import polish_date_to_datetime
 from medi_creds import *
 from preferences import PreferenceParser, HourPreference, HourTarget, DatePreference, DateTarget
-from pages import LoggedOutPage, LoginPage, AppointmentManagerPage, SearchVisitPage
+
+from pages.loginWindow import LoginPage
+from pages.myVisits import AppointmentManagerPage
+from pages.loggedOut import LoggedOutPage
+from pages.searchVisit import SearchVisitPage
 
 
 from doctor_data import DOC_IDS, SPEC_IDS
@@ -231,51 +236,17 @@ class Medicover:
             sys.exit()
 
 
-def polish_date_to_datetime(date_string):
-    values = date_string.split(' ')
-    day = int(values[0])
-    months ={
-        'styczeń': 1,
-        'stycznia': 1,
-        'luty': 2,
-        'lutego': 2,
-        'marzec': 3,
-        'marca': 3,
-        'kwiecień': 4,
-        'kwietnia': 4,
-        'maj': 5,
-        'maja': 5,
-        'czerwiec': 6,
-        'czerwca': 6,
-        'lipiec': 7,
-        'lipca': 7,
-        'sierpień': 8,
-        'sierpnia': 8,
-        'wrzesień': 9,
-        'września': 9,
-        'październik': 10,
-        'października': 10,
-        'listopad': 11,
-        'listopada': 11,
-        'grudzień': 12,
-        'grudnia': 12
-    }
-    month = months[values[1]]
-    year = int(values[2][:-1])
-    return datetime(year=year, month=month, day=day).strftime('%d-%m-%Y')
-
-
 monika_prefs = PreferenceParser(
     [
         DatePreference(
             weight=80,
-            targets=[DateTarget('09-07-2020'),]
+            targets=[DateTarget('11-08-2020'),]
 
         ),
         HourPreference(
             weight=20,
             targets=[
-                HourTarget('09:00', '12:00'),
+                HourTarget('06:00', '12:00'),
                 HourTarget('18:00', '21:00'),
             ],
             required=True
@@ -285,4 +256,4 @@ monika_prefs = PreferenceParser(
 
 med_bot = Medicover(medi_login, medi_pwd, monika_prefs)
 
-med_bot.run(specialty='Stomatolog - leczenie', doctor='Bałuszyńska Dagmara')
+med_bot.run(specialty="Gastroenterolog dorośli", doctor="Wylegała Zbigniew")
