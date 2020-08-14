@@ -29,6 +29,6 @@ def polish_date_to_datetime(date_string):
         'grudzień': 12,
         'grudnia': 12
     }
-    month = months[values[1]]
+    month = months[values[1].lower()]
     year = int(values[2][:-1])
     return datetime(year=year, month=month, day=day).strftime('%d-%m-%Y')

@@ -5,6 +5,7 @@ medi_creds.py
 Pipfile
 Pipfile.lock
 chromedriver
+geckodriver
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
